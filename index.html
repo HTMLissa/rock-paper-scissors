@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- JS -->
+    <script>
+      // Write a function that randomly generates rock, paper, or scissors
+      function computerPlay() {
+        // Generate random numbern between 1 - 3
+        let randomNum = Math.floor(Math.random() * 3) + 1;
+        // Assign rock, paper & scissors to each number in a variable comPlay
+        let comPlay = "";
+        if (randomNum == 1) {
+          comPlay += "Rock";
+        } else if (randomNum == 2) {
+          comPlay += "Paper";
+        } else {
+          comPlay += "Scissors";
+        }
+        // Print value played by computer to console
+        console.log(comPlay);
+      }
+
+      // Write a function that plays a single round of Rock Paper Scissors
+
+      computerPlay();
+    </script>
+  </body>
+</html>

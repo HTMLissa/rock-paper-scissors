@@ -38,12 +38,7 @@
 
       // Write a function that plays a single round of Rock Paper Scissors
       function playRound(playerSelection, computerSelection) {
-        // Check whether playerSelection is (caseinsensitive) rock, paper or scissors
-        // if (
-        //   playerSelection.toLowerCase() == "rock" ||
-        //   playerSelection.toLowerCase() == "paper" ||
-        //   playerSelection.toLowerCase() == "scissors"
-        // ) {
+        // Check whether playerSelection is (caseinsensitive) rock, paper or scissors and compare to computerSelection
         if (
           playerSelection.toLowerCase() == "rock" &&
           computerSelection.toLowerCase() == "paper"
@@ -79,7 +74,9 @@
         ) {
           console.log("It's a tie");
         } else {
-          console.log("Pleas stick to the rules");
+          console.log(
+            "Please stick to the rules ('rock', 'paper', or 'scissors')"
+          );
         }
       }
 

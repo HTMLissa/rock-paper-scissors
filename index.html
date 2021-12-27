@@ -9,8 +9,9 @@
   <body>
     <!-- JS -->
     <script>
-      // Generate variable computerSelection
-      let computerSelection = "";
+      //  create variables to keep track of the score
+      let playerScore = 0;
+      let computerScore = 0;
 
       // Write a function that randomly generates rock, paper, or scissors
       function computerPlay() {
@@ -29,13 +30,6 @@
         return comPlay;
       }
 
-      //   Prompt user for play
-      let playerSelection = prompt("'rock', 'paper', or 'scissors'?");
-
-      //  Let computer play
-      computerSelection = computerPlay();
-      console.log(computerSelection);
-
       // Write a function that plays a single round of Rock Paper Scissors
       function playRound(playerSelection, computerSelection) {
         // Check whether playerSelection is (caseinsensitive) rock, paper or scissors and compare to computerSelection
@@ -43,36 +37,36 @@
           playerSelection.toLowerCase() == "rock" &&
           computerSelection.toLowerCase() == "paper"
         ) {
-          console.log("You lose! Paper beats rock");
+          return 0;
         } else if (
           playerSelection.toLowerCase() == "rock" &&
           computerSelection.toLowerCase() == "scissors"
         ) {
-          console.log("You win! Rock beats scissors");
+          return 1;
         } else if (
           playerSelection.toLowerCase() == "paper" &&
           computerSelection.toLowerCase() == "rock"
         ) {
-          console.log("You win! Paper beats rock");
+          return 1;
         } else if (
           playerSelection.toLowerCase() == "paper" &&
           computerSelection.toLowerCase() == "scissors"
         ) {
-          console.log("You lose! Scissors beat rock");
+          return 0;
         } else if (
           playerSelection.toLowerCase() == "scissors" &&
           computerSelection.toLowerCase() == "paper"
         ) {
-          console.log("You win! Scissors beat paper");
+          return 1;
         } else if (
           playerSelection.toLowerCase() == "scissors" &&
           computerSelection.toLowerCase() == "rock"
         ) {
-          console.log("You lose! Rock beats scissors");
+          return 0;
         } else if (
           playerSelection.toLowerCase() === computerSelection.toLowerCase()
         ) {
-          console.log("It's a tie");
+          return "It's a tie";
         } else {
           console.log(
             "Please stick to the rules ('rock', 'paper', or 'scissors')"
@@ -80,8 +74,36 @@
         }
       }
 
-      //   Play a round
-      playRound(playerSelection, computerSelection);
+      //   Create function game to play 5 rounds and keep track of the score
+      function game() {
+        // Set score to 0
+        playerScore = 0;
+        computerScore = 0;
+        // play 5 rounds
+        for (let i = 0; i < 5; i++) {
+          //   Prompt user for play
+          let playerSelection = prompt("'rock', 'paper', or 'scissors'?");
+          console.log("Your choice: " + playerSelection);
+          // Generate variable computerSelection
+          let computerSelection = "";
+          //  Let computer play
+          computerSelection = computerPlay();
+          console.log("Computer's choice: " + computerSelection);
+          //   Play a round
+          let playedRound = playRound(playerSelection, computerSelection);
+          //   Keep track of score
+          if (playedRound == 1) {
+            playerScore++;
+          } else if (playedRound == 0) {
+            computerScore++;
+          }
+        }
+        // Declare winner
+        console.log("Your score: " + playerScore);
+        console.log("Computer's score: " + computerScore);
+      }
+
+      game();
     </script>
   </body>
 </html>

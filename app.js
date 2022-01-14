@@ -2,8 +2,15 @@ let buttons = document.querySelectorAll("button");
 let displayResults = document.querySelector(".display-results");
 buttons.forEach((button) => button.addEventListener("click", selectMoves));
 
+// Player's Choice
 let playerSelection = "";
+let playersChoice = document.createElement("p");
+displayResults.appendChild(playersChoice);
+// Computer's Choice
 let computerSelection = "";
+let computersChoice = document.createElement("p");
+displayResults.appendChild(computersChoice);
+
 //  create variables to keep track of the score
 let playerScore = 0;
 let computerScore = 0;
@@ -31,16 +38,12 @@ function selectMoves(e) {
 
 function selectingPlayersMove(e) {
   playerSelection = e.target.value;
-  let playersChoice = document.createElement("p");
   playersChoice.textContent = `Your choice: ${playerSelection}`;
-  displayResults.appendChild(playersChoice);
 }
 
 function selectingComputersMove() {
   computerSelection = computerPlay();
-  let computersChoice = document.createElement("p");
   computersChoice.textContent = `Computer's choice: ${computerSelection}`;
-  displayResults.appendChild(computersChoice);
 }
 
 // Write a function that randomly generates rock, paper, or scissors
@@ -82,7 +85,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-//   Create function game to play 5 rounds and keep track of the score
 function declareWinner(score1, score2) {
   if (score1 > score2) {
     console.log("You win!!");
@@ -92,5 +94,3 @@ function declareWinner(score1, score2) {
     console.log("It's a tie!!");
   }
 }
-
-//game();

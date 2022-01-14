@@ -1,10 +1,18 @@
+let buttons = document.querySelectorAll("button");
+buttons.forEach((button) => button.addEventListener("click", chooseMove));
+
+let playerSelection = "";
+
+function chooseMove(e) {
+  playerSelection = e.target.value;
+  console.log(playerSelection);
+}
+
 //  create variables to keep track of the score
 let playerScore = 0;
 let computerScore = 0;
 
 // ************* DELETE LATER WHEN PLAYING MULTIPLE ROUNDS
-//Prompt user for play
-let playerSelection = prompt("'rock', 'paper', or 'scissors'?");
 console.log("Your choice: " + playerSelection);
 // Generate variable computerSelection
 let computerSelection = "";
@@ -33,39 +41,19 @@ function computerPlay() {
 // Write a function that plays a single round of Rock Paper Scissors
 function playRound(playerSelection, computerSelection) {
   // Check whether playerSelection is (caseinsensitive) rock, paper or scissors and compare to computerSelection
-  if (
-    playerSelection.toLowerCase() == "rock" &&
-    computerSelection.toLowerCase() == "paper"
-  ) {
+  if (playerSelection == "rock" && computerSelection == "paper") {
     return 0;
-  } else if (
-    playerSelection.toLowerCase() == "rock" &&
-    computerSelection.toLowerCase() == "scissors"
-  ) {
+  } else if (playerSelection == "rock" && computerSelection == "scissors") {
     return 1;
-  } else if (
-    playerSelection.toLowerCase() == "paper" &&
-    computerSelection.toLowerCase() == "rock"
-  ) {
+  } else if (playerSelection == "paper" && computerSelection == "rock") {
     return 1;
-  } else if (
-    playerSelection.toLowerCase() == "paper" &&
-    computerSelection.toLowerCase() == "scissors"
-  ) {
+  } else if (playerSelection == "paper" && computerSelection == "scissors") {
     return 0;
-  } else if (
-    playerSelection.toLowerCase() == "scissors" &&
-    computerSelection.toLowerCase() == "paper"
-  ) {
+  } else if (playerSelection == "scissors" && computerSelection == "paper") {
     return 1;
-  } else if (
-    playerSelection.toLowerCase() == "scissors" &&
-    computerSelection.toLowerCase() == "rock"
-  ) {
+  } else if (playerSelection == "scissors" && computerSelection == "rock") {
     return 0;
-  } else if (
-    playerSelection.toLowerCase() === computerSelection.toLowerCase()
-  ) {
+  } else if (playerSelection === computerSelection) {
     return "It's a tie";
   } else {
     console.log("Please stick to the rules ('rock', 'paper', or 'scissors')");
@@ -112,5 +100,3 @@ function playRound(playerSelection, computerSelection) {
 //game();
 
 playRound(playerSelection, computerSelection);
-
-// DOM

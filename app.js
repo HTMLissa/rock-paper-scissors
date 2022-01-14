@@ -1,25 +1,47 @@
 let buttons = document.querySelectorAll("button");
-buttons.forEach((button) => button.addEventListener("click", chooseMove));
+let displayResults = document.querySelector(".display-results");
+buttons.forEach((button) => button.addEventListener("click", selectMoves));
 
 let playerSelection = "";
-
-function chooseMove(e) {
-  playerSelection = e.target.value;
-  console.log(playerSelection);
-}
-
+let computerSelection = "";
 //  create variables to keep track of the score
 let playerScore = 0;
 let computerScore = 0;
 
-// ************* DELETE LATER WHEN PLAYING MULTIPLE ROUNDS
-console.log("Your choice: " + playerSelection);
-// Generate variable computerSelection
-let computerSelection = "";
-//  Let computer play
-computerSelection = computerPlay();
-console.log("Computer's choice: " + computerSelection);
-// ************** DELETE LATER WHEN PLAYING MULTIPLE ROUNDS
+function selectMoves(e) {
+  // Let user play
+  selectingPlayersMove(e);
+  //   Let computer play
+  selectingComputersMove();
+  //   Play a round;
+  let playedRound = playRound(playerSelection, computerSelection);
+  if (playedRound == 1) {
+    playerScore++;
+  } else if (playedRound == 0) {
+    computerScore++;
+  }
+  if (playerScore === 5 || computerScore === 5) {
+    declareWinner(playerScore, computerScore);
+    playerScore = 0;
+    computerScore = 0;
+  }
+  console.log(playerScore);
+  console.log(computerScore);
+}
+
+function selectingPlayersMove(e) {
+  playerSelection = e.target.value;
+  let playersChoice = document.createElement("p");
+  playersChoice.textContent = `Your choice: ${playerSelection}`;
+  displayResults.appendChild(playersChoice);
+}
+
+function selectingComputersMove() {
+  computerSelection = computerPlay();
+  let computersChoice = document.createElement("p");
+  computersChoice.textContent = `Computer's choice: ${computerSelection}`;
+  displayResults.appendChild(computersChoice);
+}
 
 // Write a function that randomly generates rock, paper, or scissors
 function computerPlay() {
@@ -40,7 +62,7 @@ function computerPlay() {
 
 // Write a function that plays a single round of Rock Paper Scissors
 function playRound(playerSelection, computerSelection) {
-  // Check whether playerSelection is (caseinsensitive) rock, paper or scissors and compare to computerSelection
+  // Check whether playerSelection is rock, paper or scissors and compare to computerSelection
   if (playerSelection == "rock" && computerSelection == "paper") {
     return 0;
   } else if (playerSelection == "rock" && computerSelection == "scissors") {
@@ -60,43 +82,15 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-// //   Create function game to play 5 rounds and keep track of the score
-// function game() {
-//   // Set score to 0
-//   playerScore = 0;
-//   computerScore = 0;
-//   // play 5 rounds
-//   for (let i = 0; i < 5; i++) {
-//     //   Prompt user for play
-//     let playerSelection = prompt("'rock', 'paper', or 'scissors'?");
-//     console.log("Your choice: " + playerSelection);
-//     // Generate variable computerSelection
-//     let computerSelection = "";
-//     //  Let computer play
-//     computerSelection = computerPlay();
-//     console.log("Computer's choice: " + computerSelection);
-//     //   Play a round
-//     let playedRound = playRound(playerSelection, computerSelection);
-//     //   Keep track of score
-//     if (playedRound == 1) {
-//       playerScore++;
-//     } else if (playedRound == 0) {
-//       computerScore++;
-//     }
-//   }
-//   // Declare winner
-//   console.log("Your score: " + playerScore);
-//   console.log("Computer's score: " + computerScore);
-
-//   if (playerScore > computerScore) {
-//     console.log("You win!!");
-//   } else if (playerScore < computerScore) {
-//     console.log("You lose!!");
-//   } else {
-//     console.log("It's a tie!!");
-//   }
-// }
+//   Create function game to play 5 rounds and keep track of the score
+function declareWinner(score1, score2) {
+  if (score1 > score2) {
+    console.log("You win!!");
+  } else if (score1 < score2) {
+    console.log("You lose!!");
+  } else {
+    console.log("It's a tie!!");
+  }
+}
 
 //game();
-
-playRound(playerSelection, computerSelection);

@@ -4,11 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
     <!-- main -->
+
     <main>
+      <div class="image-container">
+        <img src="images/rock.png" alt="rock" />
+        <img src="images/paper.png" alt="paper" />
+        <img src="images/scissors.png" alt="scissors" />
+      </div>
       <div class="btn-container">
         <button class="btn-rock" value="rock">Rock</button>
         <button class="btn-paper" value="paper">Paper</button>
@@ -16,6 +31,13 @@
       </div>
       <div class="display-results"></div>
     </main>
+    <footer>
+      <a
+        href="https://www.flaticon.com/free-icons/rock-paper-scissors"
+        title="rock paper scissors icons"
+        >Rock paper scissors icons created by Freepik - Flaticon</a
+      >
+    </footer>
     <!-- JS -->
     <script src="app.js"></script>
   </body>

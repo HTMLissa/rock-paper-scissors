@@ -32,8 +32,7 @@ function selectMoves(e) {
     playerScore = 0;
     computerScore = 0;
   }
-  console.log(playerScore);
-  console.log(computerScore);
+  displayResults.classList.add("results-box");
 }
 
 function selectingPlayersMove(e) {

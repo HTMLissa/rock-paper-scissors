@@ -4,10 +4,12 @@ let scoreContainer = document.querySelector(".score-container");
 
 let currentScoreDiv = document.createElement("div");
 let winnersAnnouncement = document.createElement("h1");
+
 // Player's Choice
 let playerSelection = "";
 let playersChoice = document.createElement("p");
 currentScoreDiv.appendChild(playersChoice);
+
 // Computer's Choice
 let computerSelection = "";
 let computersChoice = document.createElement("p");
@@ -24,18 +26,18 @@ buttons.forEach((button) => button.addEventListener("click", selectMoves));
 function selectMoves(e) {
   // Let user play
   selectingPlayersMove(e);
-  //   Let computer play
+  // Let computer play
   selectingComputersMove();
-  //   Play a round;
+  // Play a round;
   let playedRound = playRound(playerSelection, computerSelection);
   if (playedRound == 1) {
     playerScore++;
   } else if (playedRound == 0) {
     computerScore++;
   }
-  //   Display current Score
+  // Display current Score
   scoreContainer.innerHTML = ` (Your score) <span>${playerScore}</span> : <span>${computerScore}</span> (Computer's score)`;
-
+  // Declare winner
   if (playerScore === 5 || computerScore === 5) {
     result = declareWinner(playerScore, computerScore);
     if (result == "win") {

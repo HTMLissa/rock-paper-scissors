@@ -1,6 +1,5 @@
 let buttons = document.querySelectorAll("button");
 let displayResults = document.querySelector(".display-results");
-buttons.forEach((button) => button.addEventListener("click", selectMoves));
 
 let currentScoreDiv = document.createElement("div");
 let winnersAnnouncement = document.createElement("h1");
@@ -19,6 +18,8 @@ let playerScore = 0;
 let computerScore = 0;
 let result;
 
+buttons.forEach((button) => button.addEventListener("click", selectMoves));
+
 function selectMoves(e) {
   // Let user play
   selectingPlayersMove(e);
@@ -33,17 +34,18 @@ function selectMoves(e) {
   }
   if (playerScore === 5 || computerScore === 5) {
     result = declareWinner(playerScore, computerScore);
+    if (result == "win") {
+      winnersAnnouncement.textContent = "You win!!";
+    } else if (result == "lose") {
+      winnersAnnouncement.textContent = "You lose!!";
+    }
+    winnersAnnouncement.classList.add("winner");
+    displayResults.appendChild(winnersAnnouncement);
     playerScore = 0;
     computerScore = 0;
+    buttons.forEach((button) => (button.disabled = "true"));
   }
   displayResults.classList.add("results-box");
-  if (result == "win") {
-    winnersAnnouncement.textContent = "You win!!";
-  } else if (result == "lose") {
-    winnersAnnouncement.textContent = "You lose!!";
-  }
-  winnersAnnouncement.classList.add("winner");
-  displayResults.appendChild(winnersAnnouncement);
 }
 
 function selectingPlayersMove(e) {

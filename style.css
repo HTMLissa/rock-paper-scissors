@@ -46,6 +46,12 @@ button:hover {
   border: 1px solid black;
   margin: 20px;
   padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.winner {
+  color: #f7567c;
 }
 
 footer {

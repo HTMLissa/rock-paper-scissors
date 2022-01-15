@@ -2,18 +2,22 @@ let buttons = document.querySelectorAll("button");
 let displayResults = document.querySelector(".display-results");
 buttons.forEach((button) => button.addEventListener("click", selectMoves));
 
+let currentScoreDiv = document.createElement("div");
+let winnersAnnouncement = document.createElement("h1");
 // Player's Choice
 let playerSelection = "";
 let playersChoice = document.createElement("p");
-displayResults.appendChild(playersChoice);
+currentScoreDiv.appendChild(playersChoice);
 // Computer's Choice
 let computerSelection = "";
 let computersChoice = document.createElement("p");
-displayResults.appendChild(computersChoice);
+currentScoreDiv.appendChild(computersChoice);
+displayResults.appendChild(currentScoreDiv);
 
 //  create variables to keep track of the score
 let playerScore = 0;
 let computerScore = 0;
+let result;
 
 function selectMoves(e) {
   // Let user play
@@ -28,11 +32,18 @@ function selectMoves(e) {
     computerScore++;
   }
   if (playerScore === 5 || computerScore === 5) {
-    declareWinner(playerScore, computerScore);
+    result = declareWinner(playerScore, computerScore);
     playerScore = 0;
     computerScore = 0;
   }
   displayResults.classList.add("results-box");
+  if (result == "win") {
+    winnersAnnouncement.textContent = "You win!!";
+  } else if (result == "lose") {
+    winnersAnnouncement.textContent = "You lose!!";
+  }
+  winnersAnnouncement.classList.add("winner");
+  displayResults.appendChild(winnersAnnouncement);
 }
 
 function selectingPlayersMove(e) {
@@ -78,18 +89,17 @@ function playRound(playerSelection, computerSelection) {
   } else if (playerSelection == "scissors" && computerSelection == "rock") {
     return 0;
   } else if (playerSelection === computerSelection) {
-    return "It's a tie";
+    return "tie";
   } else {
     console.log("Please stick to the rules ('rock', 'paper', or 'scissors')");
   }
 }
 
 function declareWinner(score1, score2) {
+  // Winner's Announcement
   if (score1 > score2) {
-    console.log("You win!!");
+    return "win";
   } else if (score1 < score2) {
-    console.log("You lose!!");
-  } else {
-    console.log("It's a tie!!");
+    return "lose";
   }
 }

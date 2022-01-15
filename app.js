@@ -1,5 +1,6 @@
 let buttons = document.querySelectorAll("button");
 let displayResults = document.querySelector(".display-results");
+let scoreContainer = document.querySelector(".score-container");
 
 let currentScoreDiv = document.createElement("div");
 let winnersAnnouncement = document.createElement("h1");
@@ -32,6 +33,9 @@ function selectMoves(e) {
   } else if (playedRound == 0) {
     computerScore++;
   }
+  //   Display current Score
+  scoreContainer.innerHTML = ` (Your score) <span>${playerScore}</span> : <span>${computerScore}</span> (Computer's score)`;
+
   if (playerScore === 5 || computerScore === 5) {
     result = declareWinner(playerScore, computerScore);
     if (result == "win") {

@@ -43,7 +43,11 @@ function selectMoves(e) {
     displayResults.appendChild(winnersAnnouncement);
     playerScore = 0;
     computerScore = 0;
-    buttons.forEach((button) => (button.disabled = "true"));
+    buttons.forEach((button) => {
+      button.disabled = "true";
+      button.classList.add("btn-disabled");
+      button.style.pointerEvents = "none";
+    });
   }
   displayResults.classList.add("results-box");
 }
@@ -71,13 +75,11 @@ function computerPlay() {
   } else {
     comPlay += "scissors";
   }
-  // Print value played by computer to console
   return comPlay;
 }
 
 // Write a function that plays a single round of Rock Paper Scissors
 function playRound(playerSelection, computerSelection) {
-  // Check whether playerSelection is rock, paper or scissors and compare to computerSelection
   if (playerSelection == "rock" && computerSelection == "paper") {
     return 0;
   } else if (playerSelection == "rock" && computerSelection == "scissors") {
